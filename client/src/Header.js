@@ -12,6 +12,9 @@ const Header = () => {
         <NavLink to="/report">
           <p> search and found</p>
         </NavLink>
+        <NavLink to="/login">
+          <p>log in</p>
+        </NavLink>
       </div>
     </div>
   );

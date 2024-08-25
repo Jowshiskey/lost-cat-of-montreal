@@ -3,6 +3,8 @@ import Header from "./Header";
 import Home from "./pages/Home";
 import SearchAndFoundBoard from "./pages/SearchAndFoundBoard";
 import FileAReport from "./pages/FileAReport";
+import Login from "./Login.js"
+import SignUp from "./SignUp.js";
 const App = () => {
 
     return (
@@ -12,8 +14,8 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/report" element={<SearchAndFoundBoard />} />
             <Route path="/fileAReport" element={<FileAReport />} />
-            {/* <Route path="/product/:singleProduct" element={<ProductDetails />} /> */}
-            {/* <Route path="/signin" element={<SignIn />} /> */}
+            <Route path="/login" element={<Login />} />
+            <Route path="/signUp" element={<SignUp />} />
             {/* <Route path="/cart" element={<Cart />} /> */}
             {/* <Route path="*" element={<Navigate to="/" />} /> */}
         </Switch>

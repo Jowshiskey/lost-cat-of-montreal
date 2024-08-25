@@ -4,7 +4,48 @@
     box-sizing: border-box;
 
 }
-
+/* header */
 .header_main_div {
     background-color: red;
+}
+
+/* sign-up  */
+.sign_up_main_div, 
+.sign_up_form_div, 
+.main_form_div, 
+.sign_up_form,
+.sign_up_main_text{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin:auto;
+    width:fit-content;
+}
+
+
+
+
+
+/* new report  */
+.fileAReport_main_div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.left_side_div, .new_report_question_div{
+    display: flex;
+    flex-direction: column;
+    max-width: fit-content;
+    /* justify-content: space-between; */
+}
+
+/* search and found board */
+.board_main_poster_div{
+    background-color: red;
+    width:fit-content;
+    margin:auto;
+}
+.lost_cat_pic{
+    max-width:250px;
+    max-height:250px;
 }

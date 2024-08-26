@@ -4,7 +4,7 @@ const morgan = require("morgan"); //helps with responses in console
 
 const PORT = 8102;
 
-const { getAllReport,addFileReport,addOneUser } = require("./handlers");
+const { getAllReport,addFileReport,addOneUser,loginUser } = require("./handlers");
 
 const app = express();
 
@@ -14,10 +14,14 @@ app.use(morgan("tiny")); //gives it a certain look in the console
 //route for getting reports
 app.get("/report",  getAllReport );
 
-//route to add user
+//route to add user sign-up
 app.post("/addNewUser", addOneUser);
+//route to validate user login
+app.post("/user", loginUser);
+
 //route to add new reports
 app.post("/addFileReport", addFileReport);
+
 
 
 //route to catch everything else

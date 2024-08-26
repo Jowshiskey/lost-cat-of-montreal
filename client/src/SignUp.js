@@ -2,11 +2,12 @@ import styled from "styled-components";
 import { Navigate, NavLink, useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
-
+import { UserContext } from "./Context/UserContext.js";
 
 
 const SignUp = () => {
     const navigate = useNavigate();
+    
     const [signUpInfo, setSignUpInfo] = useState({});
     const [signUpState, setSignUpState] = useState(false)
     const [signUpStep, setSignUpStep] = useState("register")

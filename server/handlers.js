@@ -84,10 +84,43 @@ const addOneUser = async (req, res) => {
     }
 };
 
+const loginUser = async (req, res) => {
+    
+    const { _id, email, password } = req.body;
+    console.log(req);
+    const client = new MongoClient(MONGO_URI);
+    
+    try {
+        await client.connect();
+        const db = client.db(DB);
+        const userFound = await db.collection(users).findOne({ email : email });
+        // If no user were found
+        // console.log(userFound);
+        if (userFound) {
+            console.log("user is found");
+            if(userFound.password === password){
+                console.log("user password is valid");
+                res.status(200).json({ status: 200, _id:userFound._id, email:email, message: "user is found and password is valid" });
+            } else {
+                console.log("password is not valid.")
+                res.status(404).json({ status: 404, message: "Email/username is not in database" });
+            }
+        } else {
+            console.log("username not found")
+            res.status(404).json({ status: 404, message: "Email/username is not in database" });
+        }
 
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ status: 500, message: err.message });
+    } finally {
+        client.close();
+    }
+};
 // UPDATE THIS IF YOU ADD/REMOVE A HANDLER FUNCTION
 module.exports = {
     getAllReport,
     addFileReport,
-    addOneUser
+    addOneUser,
+    loginUser
 };

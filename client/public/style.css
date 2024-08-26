@@ -22,8 +22,14 @@
     width:fit-content;
 }
 
-
-
+/* log in page  */
+.form_login{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin:auto;
+    width:fit-content;
+}
 
 
 /* new report  */

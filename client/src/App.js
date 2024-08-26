@@ -5,6 +5,7 @@ import SearchAndFoundBoard from "./pages/SearchAndFoundBoard";
 import FileAReport from "./pages/FileAReport";
 import Login from "./Login.js"
 import SignUp from "./SignUp.js";
+import UserProfile from "./UserProfile.js";
 const App = () => {
 
     return (
@@ -16,7 +17,7 @@ const App = () => {
             <Route path="/fileAReport" element={<FileAReport />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signUp" element={<SignUp />} />
-            {/* <Route path="/cart" element={<Cart />} /> */}
+            <Route path="/userProfile" element={<UserProfile />} />
             {/* <Route path="*" element={<Navigate to="/" />} /> */}
         </Switch>
         {/* <Footer /> */}

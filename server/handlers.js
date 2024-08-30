@@ -32,18 +32,36 @@ const getAllReport = async (req, res) => {
 };
 
 const addFileReport = async (req, res) => {
-    const reportInfo = req.body;
+    const { _id,
+        catName ,
+        catColor,
+        catImage,
+        lastTimeSeen,
+        whereLastSeen,
+        escapeDay,
+        profileName,
+        profilePhoneNumber,
+        profileEmail } = req.body;
     console.log(req);
     const client = new MongoClient(MONGO_URI);
 
-    if (!reportInfo) {
-        res.status(400).json({ status: 400, message: `there is no information to complete the report` });
-        return;
-    }
+    // if (!reportInfo) {
+    //     res.status(400).json({ status: 400, message: `there is no information to complete the report` });
+    //     return;
+    // }
     try {
         await client.connect();
         const db = client.db(DB);
-        const newFileReport = await db.collection(report).insertOne({ reportInfo });
+        await db.collection(report).insertOne({ _id,
+            catName ,
+            catColor,
+            catImage,
+            lastTimeSeen,
+            whereLastSeen,
+            escapeDay,
+            profileName,
+            profilePhoneNumber,
+            profileEmail });
         res.status(201).json({ status: 201, message: `Successfully added report`});
 
     } catch (err) {
@@ -56,7 +74,7 @@ const addFileReport = async (req, res) => {
 
 const addOneUser = async (req, res) => {
     
-    const { _id, email, password} = req.body;
+    const { _id, name, phone, email, password} = req.body;
     console.log(req);
     const client = new MongoClient(MONGO_URI);
     
@@ -68,7 +86,7 @@ const addOneUser = async (req, res) => {
         // console.log(userFound);
         if (!userFound) {
             console.log("valid email");
-            await db.collection(users).insertOne( { _id : _id, email : email, password : password } );
+            await db.collection(users).insertOne( { _id, name, phone, email, password } );
             res.status(201).json({ status: 201, message: "user has been add to the users list" });
         }
         else {
@@ -100,7 +118,7 @@ const loginUser = async (req, res) => {
             console.log("user is found");
             if(userFound.password === password){
                 console.log("user password is valid");
-                res.status(200).json({ status: 200, _id:userFound._id, email:email, message: "user is found and password is valid" });
+                res.status(200).json({ status: 200, _id:userFound._id, email, phone:userFound.phone, name:userFound.name, message: "user is found and password is valid" });
             } else {
                 console.log("password is not valid.")
                 res.status(404).json({ status: 404, message: "Email/username is not in database" });
@@ -109,7 +127,6 @@ const loginUser = async (req, res) => {
             console.log("username not found")
             res.status(404).json({ status: 404, message: "Email/username is not in database" });
         }
-
     } catch (err) {
         console.error(err);
         res.status(500).json({ status: 500, message: err.message });
@@ -117,10 +134,44 @@ const loginUser = async (req, res) => {
         client.close();
     }
 };
+// const updatePassword = async (req, res) => {
+    
+//     const { email,password1,password2,password3 } = req.body;
+//     console.log(req);
+//     const client = new MongoClient(MONGO_URI);
+    
+//     try {
+//         await client.connect();
+//         const db = client.db(DB);
+//         const userFound = await db.collection(users).findOne({ email : email });
+//         // If no user were found
+//         // console.log(userFound);
+//         if (userFound) {
+//             console.log("user is found");
+//             if(userFound.password === password1){
+//                 console.log("user Oldpassword is valid");
+//                 const result = await db.collection(users).updateOne()
+//                 if (result.modifiedCount > 0) {
+//                     res.status(200).json({ status : 200 , message: `Password has been updated SUCCESFULLY` });
+//                 } else {
+//                     res.status(404).json({ status : 404 , message: `Cant update password` });
+//                 }
+//             } else {
+//                 console.log("user not found in the database")
+//                 res.status(404).json({ status: 404, message: "Email/username is not in database" });
+//             }
+//         }
+//     } catch (err) {
+//         console.error(err);
+//         res.status(500).json({ status: 500, message: err.message });
+//     } finally {
+//         client.close();
+//     }
+// };
 // UPDATE THIS IF YOU ADD/REMOVE A HANDLER FUNCTION
 module.exports = {
     getAllReport,
     addFileReport,
     addOneUser,
-    loginUser
+    loginUser,
 };

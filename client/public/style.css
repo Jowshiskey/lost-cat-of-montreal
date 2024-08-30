@@ -44,6 +44,10 @@
     max-width: fit-content;
     /* justify-content: space-between; */
 }
+.cat_pic_small {
+    max-width:200px;
+    max-height:200pxvh;
+}
 
 /* search and found board */
 .board_main_poster_div{
@@ -54,4 +58,65 @@
 .lost_cat_pic{
     max-width:250px;
     max-height:250px;
+}
+
+/* Poster */
+
+.capture {
+    display:flex;
+    margin:auto;
+    position:relative;
+}
+.capture_img{
+    margin:auto;
+    height:1000px;
+    width:900px;
+}
+.capture_h1 {
+    margin:auto;
+    top: 0.5em;
+    left: 0.5em;
+    right: 0.5em;
+    bottom: 0.5em;
+    box-sizing: border-box;
+    position:absolute;
+    font-size: 6rem;
+    text-align: center;
+    color:white;
+}
+.capture_h2 {
+    margin:auto;
+    /* top: 0em; */
+    left: 0.5em;
+    right: 0.5em;
+    bottom: 5em;
+    box-sizing: border-box;
+    position:absolute;
+    font-size: 3rem;
+    text-align: center;
+    color:white;
+}
+.capture_CatName {
+    margin:auto;
+    /* top: 0.5em; */
+    left: 0.5em;
+    right: 0.5em;
+    bottom: 1.5em;
+    box-sizing: border-box;
+    position:absolute;
+    font-size: 6rem;
+    text-align: center;
+    color:white;
+}
+.capture_Info{
+    margin:auto;
+    /* top: 0.5em; */
+    left: 0.5em;
+    right: 0.5em;
+    bottom: 1.5em;
+    box-sizing: border-box;
+    position:absolute;
+    font-size: 1.5rem;
+    text-align: center;
+    color:white;
 }

@@ -2,11 +2,19 @@ import styled from "styled-components";
 import { NavLink, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import { UserContext } from "./Context/UserContext.js";
+import { LogInContext } from "./Context/LogInContext.js";
 
 const Header = () => {
+  const navigate = useNavigate();
   const user = React.useContext(UserContext).user;
   const setUser = React.useContext(UserContext).setUser;
-console.log(user);
+  const setLoginStep = React.useContext(LogInContext).setLoginStep;
+
+const handleLogout=(event)=>{
+  event.preventDefault();
+  setUser(null)
+  setLoginStep("enterCred")
+}
 
 if(user!==null){
   return (
@@ -18,14 +26,15 @@ if(user!==null){
         <NavLink to="/report">
           <p> search and found</p>
         </NavLink>
-        <NavLink onClick={e=>{setUser(null)}} to="/login" >
-          <p>log out</p>
-        </NavLink>
-        <p>welcome you are sign-in</p>
-        <NavLink to="/userProfile">
-          <p>Profile</p>
-        </NavLink>
-
+        <div>
+          <p>welcome {user.name} , you are sign-in</p>
+          <NavLink to="/userProfile">
+            <p>Profile</p>
+          </NavLink>
+          <NavLink onClick={handleLogout} to="/login" >
+            <p>log out</p>
+          </NavLink>
+        </div>
       </div>
     </div>
   );

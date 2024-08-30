@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Navigate, NavLink, useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
-import { UserContext } from "./Context/UserContext.js";
+import { UserContext } from "../Context/UserContext.js";
 
 
 const SignUp = () => {
@@ -10,8 +10,8 @@ const SignUp = () => {
     
     const [signUpInfo, setSignUpInfo] = useState({});
     const [signUpState, setSignUpState] = useState(false)
-    const [signUpStep, setSignUpStep] = useState("register")
-    
+    const [signUpStep, setSignUpStep] = useState("register");
+
     const handleSignUp =(event)=>{
         event.preventDefault();
         //pre fetch validation
@@ -22,6 +22,8 @@ const SignUp = () => {
         //assemble body for req
                 const assembleSignUpInfo = {
                     _id : uuidv4(),
+                    name : sign_up_form.userName.value,
+                    phone : sign_up_form.phoneNumber.value,
                     email : sign_up_form.email.value,
                     password : sign_up_form.password.value,
                 }
@@ -65,11 +67,18 @@ return (
         <div className="sign_up_form_div">
             <main className="main_form_div">
                 <form className="sign_up_form" name="sign_up_form" onSubmit={handleSignUp}>
-                    <label>Email</label>
+                    <label><h2>Screen Name</h2></label>
+                    <p>Your public profile name. This name will appear on poster and comment you create.</p>
+                    <input type="text" name="userName" placeholder="username" required></input>
+                    <label><h2>Phone Number</h2></label>
+                    <p>Phone Number to reach you. This phone number will be available to public and appear on poster you create.</p>
+                    <input type="text" name="phoneNumber" placeholder="(XXX) XXX-XXXX" required></input>
+                    <label><h2>Email</h2></label>
+                    <p>The email address where you want to receive account-related notifications such as Alerts.</p>
                     <input type="email" name="email" placeholder="Email@.com" required></input>
-                    <label>Password</label>
+                    <label><h2>Password</h2></label>
                     <input type="password" name="password" placeholder="password" required></input>
-                    <label>Password confirmation</label>
+                    <label><h2>Password confirmation</h2></label>
                     <input type="password" name="confirmPassword"placeholder="confirm password" required></input>
                     <div className="sign_up_terms_form">
                         <input type="checkbox" name="termUsePrivacy"></input>

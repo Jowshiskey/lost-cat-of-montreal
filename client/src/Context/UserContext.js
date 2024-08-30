@@ -8,12 +8,11 @@ export const UserContext = React.createContext();
 
 
 const UserProvider = ({ children }) => {
+
     const [user, setUser] = useState(null);
-    const [userName, setUserName] = useState(null);
-    const [userPhoneNumber, setUserPhoneNumber] = useState(null);
-    const [userEmail, setUserEmail] = useState(null);
+
     return (
-        <UserContext.Provider value={{ user, setUser, userEmail, setUserEmail }} >
+        <UserContext.Provider value={{ user,setUser }} >
             {children}
         </UserContext.Provider>
     )

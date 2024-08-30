@@ -18,6 +18,9 @@ app.get("/report",  getAllReport );
 app.post("/addNewUser", addOneUser);
 //route to validate user login
 app.post("/user", loginUser);
+//route to validate password change
+// app.post("/user/password-change", updatePassword);
+
 
 //route to add new reports
 app.post("/addFileReport", addFileReport);

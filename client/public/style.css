@@ -58,7 +58,7 @@ a:active {
 }
 .Home_newReport_btn, .Home_SnF_btn,
 .back_to_login_btn, .reset_pw_btn, 
-.reset_pw_submit_btn, .back_to_signUp_btn, 
+.reset_pw_submit_btn, .back_to_fileAReport, .back_to_signUp_btn, 
 .login_submit_btn, .logout_submit_btn {
     width: fit-content;
     height: fit-content;
@@ -69,7 +69,7 @@ a:active {
 .Home_newReport_btn:hover, .Home_SnF_btn:hover, 
 .back_to_login_btn:hover, .logout_submit_btn:hover, .reset_pw_btn:hover, 
 .reset_pw_submit_btn:hover, .back_to_signUp_btn:hover, 
-.login_submit_btn:hover{
+.login_submit_btn:hover, .back_to_fileAReport:hover{
     scale: 1.125;
     color: rgb(170, 161, 161);
 }
@@ -84,7 +84,6 @@ a:active {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /* align-items: center; */
     margin:auto;
     width:fit-content;
 }
@@ -94,7 +93,7 @@ a:active {
 .form_login, .success_logout_div, .failed_cred_main_div,
 .email_reset_div, 
 .complete_cred_main_div, .email_reset_complete_div, 
-.user_profile_main_div, .formUpdatePw, .no_my_reports_found{
+.user_profile_main_div, .fileAreport_opt, .formUpdatePw, .no_my_reports_found{
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -219,6 +218,22 @@ a:active {
     font-size: 1.5rem;
     text-align: center;
     color:white;
+}
+.capture_Info2{
+    margin:auto;
+    /* top: 0.5em; */
+    left: 0.5em;
+    right: 0.5em;
+    bottom: 0.5em;
+    box-sizing: border-box;
+    position:absolute;
+    font-size: 1.5rem;
+    text-align: center;
+    color:white;
+}
+.poster_img{
+    width: 80vw;
+    height: 90vh;
 }
 /* user profile page  */
 .user_profile_main_div {

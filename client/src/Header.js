@@ -12,8 +12,9 @@ const Header = () => {
 
 const handleLogout=(event)=>{
   event.preventDefault();
-  setUser(null)
-  setLoginStep("enterCred")
+  setUser(null);
+  setLoginStep("enterCred");
+  navigate("/login");
 }
 
 if(user!==null){

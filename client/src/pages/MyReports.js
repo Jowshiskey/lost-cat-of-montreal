@@ -9,12 +9,10 @@ const MyReports = () => {
     const [updateUserReport, setUpdateUserReport] = useState(true);
     const [userReports, setUserReports] = useState([]);
     const user = React.useContext(UserContext).user;
-    const assembleURL = "/getUserReport/" + user.email;
-    console.log(assembleURL)
 
     useEffect(() => {
         if(updateUserReport){
-        fetch(assembleURL)
+        fetch("/getUserReport/" + user.email)
             .then((response) => response.json())
             .then((parsed) => {
                 if(parsed.status === 200){
@@ -30,37 +28,42 @@ const MyReports = () => {
         }
     });
 
-    // if(user && userReports===null) {
+    if(user) {
+        if(userReports){
+            return (
+                <div className="my_report_main_div">
+                    <p>this is the my reports page</p>
+                    {userReports.map(x=>{
+                        return (
+                            <div key={x._id}>
+                                <p>{x.catName}</p>
+                                <p>{x.catColor}</p>
+                                <p>{x.escapeDay}</p>
+                                <p>{x.lastTimeSeen}</p>
+                            </div>
+                        )
+                    })}
+                </div>
+        )
+        } else {
+            return (
+                <div className="no_my_reports_found">
+                    <p className="text">this is the my reports page</p>
+                    <p className="text">There is no Report associate with you Email Address</p>
+                    <p className="text">Wrong account ? Try login into your account ?</p>
+                    <NavLink to="/login"><button className="back_to_login_btn">Login</button></NavLink>
+                </div> 
+                )
+        }
+    } else {
         return (
-            <div className="no_my_reports_found">
-                <p className="text">this is the my reports page</p>
-                <p className="text">There is no Report associate with you Email Address</p>
-                <NavLink to="/login"><button className="back_to_login_btn">Login</button></NavLink>
-            </div> 
-            )
-    // }
-    // if(!user){
-    //     return (
-    //         <div>
-    //             <p>this is the my reports page</p>
-    //             <p>You need to be login to see your Reports</p>
-    //             <NavLink to="/login"><button>Login</button></NavLink>
-    //         </div>
-    // )
-    // } else if (userReports) {
-    //     return (
-    //         <div>
-    //             <p>this is the my reports page</p>
-    //             {userReports.map(x=>{
-    //                 return (
-    //                     <div key={x._id}>
-    //                         <p>{x.catName}</p>
-    //                     </div>
-    //                 )
-    //             })}
-    //         </div>
-    // )
-    // } 
+            <div>
+                <p>this is the my reports page</p>
+                <p>You need to be login to see your Reports</p>
+                <NavLink to="/login"><button>Login</button></NavLink>
+            </div>
+        )
+    }
 };
 
 export default MyReports;

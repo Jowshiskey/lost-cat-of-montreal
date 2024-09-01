@@ -6,34 +6,35 @@ import html2canvas from "html2canvas";
 
 const PreviewPoster =()=>{
 
-    const navigate = useNavigate(); 
-    const ToCaptureRef = useRef();
-    const [dataURL,setDataURL] = useState(null);
+    const navigate = useNavigate();
+    const { setPreviewMode, dataURL } = React.useContext(FileAreportContext);
 
 const handlePrint=()=>{
     window.print();
     return false;
 }
 
-const { previewMode, setPreviewMode, setPreviewPhoto, previewPhoto } = React.useContext(FileAreportContext);
+
 const handleExitPreview=()=>{
     setPreviewMode(false);
-    navigate("/fileAReport");
+    navigate("/createPoster");
 }
+// onClick={handleDownload}
+// const handleDownload=()=>{
+//     setPreviewMode(false);
+//     navigate("/report");
+// }
 
     return (
         <div >
             <div className="render">
-            <div className="capture" ref={ToCaptureRef}>
-                <h1 className="capture_h1">Chat Perdu</h1>
-                <h2 className="capture_h2">Help us to find our Cat</h2>
-                <h1 className="capture_CatName">ZAZA </h1>
-                <p className="capture_Info">Please reach out to user.name at : xxx-xxx-xxxx, if you have any information</p>
-                <img src={previewPhoto} alt="cat_picture" className="capture_img"></img>
+            <div className="capture">
+                <img src={dataURL} alt="cat_picture" className="poster_img"></img>
             </div>
             </div>
-            <button onClick={handlePrint} >print</button>
+            <button onClick={handlePrint} >Print</button>
             <button onClick={handleExitPreview}>Exit Preview</button>
+            <button ><a href={dataURL} download>Save Poster</a></button>
         </div>
     )
 };

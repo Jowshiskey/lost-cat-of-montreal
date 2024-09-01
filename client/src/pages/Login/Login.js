@@ -70,18 +70,21 @@ if(user===null){
     {loginStep==="enterCred" &&
         <div>
             <p>this is the log in page</p>
-            <div>
+            <div className="login_div_cred">
                 <main>
                     <form className="form_login" name="login_form" onSubmit={handleLogin}>
-                        <label>Username : </label>
-                        <input type="email" name="email" placeholder="username is your email"></input>
-                        <label>Password : </label>
-                        <input type="password" name="password" placeholder="password"></input>
-                        <button type="submit">log in</button>
+                        <label className="login_label">Username : </label>
+                        <input className="login_input" type="email" name="email" placeholder="username is your email"></input>
+                        <label className="login_label">Password : </label>
+                        <input className="login_input" type="password" name="password" placeholder="password"></input>
+                        <button className="login_submit_btn" type="submit">log in</button>
                     </form>
                 </main>
             </div>
-            <p>do you need to create a new account ? : <NavLink to="/signUp"><button>Sign-Up</button></NavLink></p>
+            <div className="login_signUp_opt">
+                <p className="text">New to the website ? create a new account.</p>
+                <NavLink to="/signUp"><button className="back_to_signUp_btn">Sign-Up</button></NavLink>
+            </div>
         </div>
     }
     {loginStep==="failCred" && <FailedCred setLoginStep={setLoginStep} />}
@@ -91,9 +94,9 @@ if(user===null){
     )
 } else {
     return (
-        <div>
-            <p>You are currently Sign-in</p>
-            <button onClick={handleLogout}>Logout</button>
+        <div className="failed_cred_main_div">
+            <p className="text">You are currently Sign-in</p>
+            <button className="logout_submit_btn" onClick={handleLogout}>Logout</button>
         </div>
     )
 }

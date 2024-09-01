@@ -2,14 +2,80 @@
     margin:0;
     padding:0;
     box-sizing: border-box;
-
+    font-family: "Poppins", sans-serif;
+}
+.text{
+    font-family: "Poppins", sans-serif;
+    font-size: 16px;
+    color: rgba(55, 34, 75, 0.788);
+}
+.h2text{
+    font-family: "Poppins", sans-serif;
+    font-size: 26px;
+    color: rgba(55, 34, 75, 0.788);
 }
 /* header */
 .header_main_div {
-    background-color: red;
+    font-family: "Poppins", sans-serif;
+    font-size: 30px;
+    font-weight:bold;
+    background-image: url('asset/header_image.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+@media (max-width: 600px) {
+    .header_main_div {
+        font-size: 15px;
+    }
+}
+.header_webname_div{
+    opacity: 1;
+    display:flex;
+    justify-content: space-around;
+}
+a:link {
+    text-decoration: none;
+}
+a:visited {
+    text-decoration: none;
+    color: white;
+}
+a:hover {
+    text-decoration:underline;
+}
+a:active {
+    text-decoration:none;
+}
+/* Home page  */
+.Home_main{
+    margin:auto;
+    width:fit-content;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items:center;
+}
+.Home_newReport_btn, .Home_SnF_btn,
+.back_to_login_btn, .reset_pw_btn, 
+.reset_pw_submit_btn, .back_to_signUp_btn, 
+.login_submit_btn, .logout_submit_btn {
+    width: fit-content;
+    height: fit-content;
+    border-radius:10px;
+    font-size: 22px;
+    color: black;
+}
+.Home_newReport_btn:hover, .Home_SnF_btn:hover, 
+.back_to_login_btn:hover, .logout_submit_btn:hover, .reset_pw_btn:hover, 
+.reset_pw_submit_btn:hover, .back_to_signUp_btn:hover, 
+.login_submit_btn:hover{
+    scale: 1.125;
+    color: rgb(170, 161, 161);
 }
 
 /* sign-up  */
+
 .sign_up_main_div, 
 .sign_up_form_div, 
 .main_form_div, 
@@ -18,21 +84,56 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    /* align-items: center; */
     margin:auto;
     width:fit-content;
 }
 
 /* log in page  */
-.form_login{
+
+.form_login, .success_logout_div, .failed_cred_main_div,
+.email_reset_div, 
+.complete_cred_main_div, .email_reset_complete_div, 
+.user_profile_main_div, .formUpdatePw, .no_my_reports_found{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    margin:auto;
+    width:fit-content;
+    height: 30vh;
+}
+.login_div_cred{
+    margin:auto;
+    width:fit-content;
+    height:30vh;
+}
+.login_input, .email_reset_input{
+    scale:1.4;
+    height: 1.75rem;
+    border-radius: 5px;
+}
+.login_input:hover, .email_reset_input:hover {
+    border-color: brown;
+}
+.login_label{
+    font-family: "Poppins", sans-serif;
+    font-size: 20px;
+    color: rgba(55, 34, 75, 0.788);
+}
+.login_signUp_opt{
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     margin:auto;
     width:fit-content;
 }
 
 
+
 /* new report  */
+
 .fileAReport_main_div {
     display: flex;
     flex-direction: row;
@@ -42,14 +143,14 @@
     display: flex;
     flex-direction: column;
     max-width: fit-content;
-    /* justify-content: space-between; */
 }
 .cat_pic_small {
     max-width:200px;
-    max-height:200pxvh;
+    max-height:200px;
 }
 
 /* search and found board */
+
 .board_main_poster_div{
     background-color: red;
     width:fit-content;
@@ -61,7 +162,6 @@
 }
 
 /* Poster */
-
 .capture {
     display:flex;
     margin:auto;
@@ -119,4 +219,8 @@
     font-size: 1.5rem;
     text-align: center;
     color:white;
+}
+/* user profile page  */
+.user_profile_main_div {
+
 }

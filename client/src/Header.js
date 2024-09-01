@@ -26,15 +26,16 @@ if(user!==null){
         <NavLink to="/report">
           <p> search and found</p>
         </NavLink>
-        <div>
-          <p>welcome {user.name} , you are sign-in</p>
+        <NavLink to="/myReports">
+            <p>my reports</p>
+          </NavLink>
           <NavLink to="/userProfile">
             <p>Profile</p>
           </NavLink>
           <NavLink onClick={handleLogout} to="/login" >
             <p>log out</p>
           </NavLink>
-        </div>
+
       </div>
     </div>
   );

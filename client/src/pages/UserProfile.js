@@ -64,32 +64,33 @@ const UserProfile = () => {
 
 if(user!==null){
     return (
-        <div>
+        <div className="user_profile_main_div">
             <p>this is user profile</p>
-            <h2>Screen Name</h2>
-            <p>Your public profile name. This name will appear on poster and comment you create.</p>
+            <h2 className="h2text">Screen Name</h2>
+            <p className="text">Your public profile name. This name will appear on poster and comment you create.</p>
             <label></label>
             <input type="text" name="userProfileName" defaultValue={user.name}></input>
-            <h2>Notification Email</h2>
-            <p>The email address where you want to receive account-related notifications such as Alerts.</p>
+            <h2 className="h2text">Notification Email</h2>
+            <p className="text">The email address where you want to receive account-related notifications such as Alerts.</p>
             <label></label>
             <input type="text" name="userProfileEmail" defaultValue={user.email}></input>
-            <h2>Phone Number</h2>
-            <p>Phone Number to reach you. This phone number will be public and appear on poster you create.</p>
+            <h2 className="h2text">Phone Number</h2>
+            <p className="text">Phone Number to reach you. This phone number will be public and appear on poster you create.</p>
             <label></label>
             <input type="text" name="userProfilePhoneNumber" placeholder="xxx xxx-xxxx" defaultValue={user.phone}></input>
-            <button>Update Profile Info</button>    
+            <p></p>
+            <button className="reset_pw_btn">Update Profile Info</button>    
             
-            <div>
-            <p>Need to Change password ?</p>
-            {changePasswordToggle===false && <button onClick={(e=>{setChangePasswordToggle(true),setChangePasswordStep("request")})}>Change Password</button>}
+            <div className="email_reset_div">
+            <p className="text">Need to Change password ?</p>
+            {changePasswordToggle===false && <button className="reset_pw_btn" onClick={(e=>{setChangePasswordToggle(true),setChangePasswordStep("request")})}>Change Password</button>}
             {changePasswordStep==="request" && changePasswordToggle===true && 
             <div>
-                <form name="formUpdatePw"onSubmit={handlePasswordUpdate}>
+                <form className="formUpdatePw" name="formUpdatePw"onSubmit={handlePasswordUpdate}>
                     <input type="password" name="oldPassword" placeholder="enter your old password" required></input>
                     <input type="password" name="newPassword" placeholder="enter your new password" required></input>
                     <input type="password" name="confirmNewPassword" placeholder="confirm your new password" required></input>
-                    <button type="submit">send reset password email</button>
+                    <button className="reset_pw_submit_btn" type="submit">send reset password email</button>
                 </form>
             </div>
             }
@@ -99,11 +100,11 @@ if(user!==null){
     )
 } else {
     return (
-        <div>
-            <p>SUCCESFULLY logout.</p>
-            <p>Please login your account to access your UserProfile</p>
+        <div className="success_logout_div">
+            <p className="text">SUCCESFULLY logout.</p>
+            <p className="text">Please login your account to access your UserProfile</p>
             <NavLink to="/login">
-                <p>log in</p>
+                <button>log in</button>
             </NavLink>
         </div>
 )

@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { FileAreportContext } from '../../Context/FileAreportContext';
 // import {AdvancedMarker} from './advanced-marker';
 // const { GOOGLE_MAPS_API_KEY } = process.env;
-const GOOGLE_MAPS_API_KEY = "AIzaSyDLo8KDsMopys4Ctt2gG6nRxyDEdg5yBTE"
+const GOOGLE_MAPS_API_KEY = "AIzaSyCtBq7kAEidwP4rDeaweiBRJ4WB8wwfi3s"
 
 const mapStyle = {
         width: '20vw',

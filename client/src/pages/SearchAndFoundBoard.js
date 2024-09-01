@@ -27,10 +27,11 @@ const SearchAndFoundBoard = () => {
         <p>this is the search and found board</p>
         {allReport.map((x) => {
           return (
-            <div key={x.reportInfo._id} className="board_main_poster_div">
+            <div key={x._id} className="board_main_poster_div">
               <div>
-                <p>{x.reportInfo.name}</p>
-                <p>{x.reportInfo.color}</p>
+                <p>{x.profileName}</p>
+                <p>{x.catColor}</p>
+                <img src={x.catImage}></img>
               </div>
               <div>
                 <button>report post</button>
@@ -40,7 +41,6 @@ const SearchAndFoundBoard = () => {
                 <p>time elapse since creation : 00h:00</p>
               </div>
             </div>
-
           );
         })}
       </div>

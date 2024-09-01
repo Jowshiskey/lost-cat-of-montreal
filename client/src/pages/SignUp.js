@@ -67,32 +67,32 @@ return (
         <div className="sign_up_form_div">
             <main className="main_form_div">
                 <form className="sign_up_form" name="sign_up_form" onSubmit={handleSignUp}>
-                    <label><h2>Screen Name</h2></label>
-                    <p>Your public profile name. This name will appear on poster and comment you create.</p>
+                    <label><h2 className="h2text">Screen Name</h2></label>
+                    <p className="text">Your public profile name. This name will appear on poster and comment you create.</p>
                     <input type="text" name="userName" placeholder="username" required></input>
-                    <label><h2>Phone Number</h2></label>
-                    <p>Phone Number to reach you. This phone number will be available to public and appear on poster you create.</p>
+                    <label><h2 className="h2text">Phone Number</h2></label>
+                    <p className="text">Phone Number to reach you. This phone number will be available to public and appear on poster you create.</p>
                     <input type="text" name="phoneNumber" placeholder="(XXX) XXX-XXXX" required></input>
-                    <label><h2>Email</h2></label>
-                    <p>The email address where you want to receive account-related notifications such as Alerts.</p>
+                    <label><h2 className="h2text">Email</h2></label>
+                    <p className="text">The email address where you want to receive account-related notifications such as Alerts.</p>
                     <input type="email" name="email" placeholder="Email@.com" required></input>
-                    <label><h2>Password</h2></label>
+                    <label><h2 className="h2text">Password</h2></label>
                     <input type="password" name="password" placeholder="password" required></input>
-                    <label><h2>Password confirmation</h2></label>
+                    <label><h2 className="h2text">Password confirmation</h2></label>
                     <input type="password" name="confirmPassword"placeholder="confirm password" required></input>
                     <div className="sign_up_terms_form">
                         <input type="checkbox" name="termUsePrivacy"></input>
-                        <label>I agree to the lost Cat of Montreal <a href="#" >Term and use</a> and <a href="#">Privacy policy</a></label>
+                        <label className="text">I agree to the lost Cat of Montreal <a href="#" className="text" style={{color:"blue"}}>Term and use</a> and <a className="text" style={{color:"blue"}} href="#">Privacy policy</a></label>
                     </div>
-                    <button type="submit">Sign-Up</button>
+                    <button className="login_submit_btn " type="submit">Sign-Up</button>
                 </form>
             </main>
         </div>
     }
     {signUpStep === "complete" &&
         <div>
-            <p>Thank you for registering to Lost Cat</p>
-            <NavLink to="/login"><button>Go to Log in</button></NavLink>
+            <p className="text">Thank you for registering to Lost Cat</p>
+            <NavLink to="/login"><button className="back_to_login_btn">Go to Log in</button></NavLink>
         </div>
     }
     </div>

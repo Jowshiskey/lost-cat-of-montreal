@@ -19,20 +19,20 @@ const FailedCred =( { setLoginStep })=>{
     }
 
     return (
-        <div>
-            <p>Username dosent Exist or wrong password</p>
-            <button onClick={(e=>{setLoginStep("enterCred")})}>Try again, go back to log-in.</button>
-            <p>forgot your password ?</p>
-            {resetPasswordEmail===false && <button onClick={(e=>{setResetPasswordEmail(true)})}>send password reset to email Adress.</button>}
+        <div className="failed_cred_main_div">
+            <p className="text">Username dosent Exist or wrong password</p>
+            <button className="back_to_login_btn" onClick={(e=>{setLoginStep("enterCred")})}>Try again, go back to log-in.</button>
+            <p className="text">forgot your password ?</p>
+            {resetPasswordEmail===false && <button className="reset_pw_btn" onClick={(e=>{setResetPasswordEmail(true)})}>send password reset to email Adress.</button>}
             {resetPasswordEmail===true && 
             <div>
-                <form name="form_email_request_forget_password" onSubmit={handlePasswordResetRequest}>
-                    <input type="email" name="email" placeholder="enter your email" required></input>
-                    <button >send reset password email</button>
+                <form  className="email_reset_div" name="form_email_request_forget_password" onSubmit={handlePasswordResetRequest}>
+                    <input className="email_reset_input"type="email" name="email" placeholder="enter your email" required></input>
+                    <button className="reset_pw_submit_btn">send reset password email</button>
                 </form>
             </div>}
-            <p>Create a new account ?</p>
-            <NavLink to="/signUp"><button>Sign-Up</button></NavLink>
+            <p className="text">Create a new account ?</p>
+            <NavLink to="/signUp"><button className="back_to_signUp_btn">Sign-Up</button></NavLink>
         </div>
     )
 };

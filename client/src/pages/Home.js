@@ -5,21 +5,13 @@ const Home = () => {
 
     const user = React.useContext(UserContext).user;
 
-    if(user){ 
         return( 
-        <div>
+        <div className="Home_main">
             <p>this is the home page</p>
-            <NavLink to="/fileAReport"><button>file a new Lost Cat Report</button></NavLink>
-            <NavLink to="/report"><button>Search and Found board</button></NavLink>
+            <NavLink to="/fileAReport"><button className="Home_newReport_btn">file a new Lost Cat Report</button></NavLink>
+            <NavLink to="/report"><button className="Home_SnF_btn">Search and Found board</button></NavLink>
         </div>)
-    } else {
-        return( 
-            <div>
-                <p>this is the home page</p>
-                <NavLink to="/fileAReport"><button>file a new Lost Cat Report</button></NavLink>
-                <NavLink to="/report"><button>Search and Found board</button></NavLink>
-            </div>)
-    }
+
     
 }
 

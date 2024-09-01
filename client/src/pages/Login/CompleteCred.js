@@ -2,8 +2,8 @@
 const CompleteCred =( { setLoginStep })=>{
 
     return (
-        <div>
-            <p>You are SUCCESFULLY login</p>
+        <div className="complete_cred_main_div">
+            <p className="text">You are SUCCESFULLY login</p>
         </div>
     )
 };

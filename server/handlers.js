@@ -14,13 +14,36 @@ const getAllReport = async (req, res) => {
     try {
         await client.connect(); 
         const db = client.db(DB);
-        const catInfo = await db.collection(report).find().toArray();
+        const allReports = await db.collection(report).find().toArray();
 
-        if (catInfo.length === 0) {
+        if (allReports.length === 0) {
             res.status(404).json({ status: 404, message: "Report not found." });
         }
         else {
-            res.status(200).json({ status: 200, data : catInfo});
+            res.status(200).json({ status: 200, data : allReports});
+        }
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ status: 500, message: err.message });
+    } finally {
+        client.close();
+    }
+};
+
+const getUserReport = async (req,res) => {
+    const email = req.params.email; 
+    const query = { profileEmail : email };
+    const client = new MongoClient(MONGO_URI);
+    try {
+        await client.connect(); 
+        const db = client.db(DB);
+        const userReports = await db.collection(report).find(query).toArray();
+
+        if (userReports.length === 0) {
+            res.status(404).json({ status: 404, message: "Report not found." });
+        }
+        else {
+            res.status(200).json({ status: 200, data : userReports});
         }
 
     } catch (err) {
@@ -29,7 +52,7 @@ const getAllReport = async (req, res) => {
     } finally {
         client.close();
     }
-};
+}
 
 const addFileReport = async (req, res) => {
     const { _id,
@@ -134,44 +157,12 @@ const loginUser = async (req, res) => {
         client.close();
     }
 };
-// const updatePassword = async (req, res) => {
-    
-//     const { email,password1,password2,password3 } = req.body;
-//     console.log(req);
-//     const client = new MongoClient(MONGO_URI);
-    
-//     try {
-//         await client.connect();
-//         const db = client.db(DB);
-//         const userFound = await db.collection(users).findOne({ email : email });
-//         // If no user were found
-//         // console.log(userFound);
-//         if (userFound) {
-//             console.log("user is found");
-//             if(userFound.password === password1){
-//                 console.log("user Oldpassword is valid");
-//                 const result = await db.collection(users).updateOne()
-//                 if (result.modifiedCount > 0) {
-//                     res.status(200).json({ status : 200 , message: `Password has been updated SUCCESFULLY` });
-//                 } else {
-//                     res.status(404).json({ status : 404 , message: `Cant update password` });
-//                 }
-//             } else {
-//                 console.log("user not found in the database")
-//                 res.status(404).json({ status: 404, message: "Email/username is not in database" });
-//             }
-//         }
-//     } catch (err) {
-//         console.error(err);
-//         res.status(500).json({ status: 500, message: err.message });
-//     } finally {
-//         client.close();
-//     }
-// };
+
 // UPDATE THIS IF YOU ADD/REMOVE A HANDLER FUNCTION
 module.exports = {
     getAllReport,
     addFileReport,
     addOneUser,
     loginUser,
+    getUserReport,
 };

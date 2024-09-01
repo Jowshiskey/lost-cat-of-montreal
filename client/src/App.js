@@ -10,6 +10,7 @@ import UserProfile from "./pages/UserProfile.js";
 import MyFirstMap from "./pages/FileAReport/MyFirstMap.js";
 import Poster from "./pages/FileAReport/Poster.js";
 import PreviewPoster from "./pages/FileAReport/PreviewPoster.js";
+import MyReports from "./pages/MyReports.js";
 import { FileAreportContext } from './Context/FileAreportContext.js';
 
 const App = () => {
@@ -29,6 +30,7 @@ const App = () => {
                     <Route path="/userProfile" element={<UserProfile />} />
                     <Route path="/map" element={<MyFirstMap />} />
                     <Route path="/createPoster" element={<Poster />} />
+                    <Route path="/myReports" element={<MyReports />} />
                     <Route path="*" element={<Navigate to="/" />} />
                 </Switch>
                 {/* <Footer /> */}

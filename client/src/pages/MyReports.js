@@ -1,14 +1,17 @@
 import styled from "styled-components";
 import { NavLink, useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
+import { FileAreportContext } from "../Context/FileAreportContext.js";
 import { UserContext } from "../Context/UserContext.js";
-
-
+import { ReportStatusContext } from "../Context/ReportStatusContext.js";
 
 const MyReports = () => {
+    const navigate = useNavigate()
     const [updateUserReport, setUpdateUserReport] = useState(true);
     const [userReports, setUserReports] = useState([]);
-    const user = React.useContext(UserContext).user;
+    const { setFileFormSubmitInfo, fileFormSubmitInfo } = React.useContext(FileAreportContext);
+    const { posterStatus,setPosterStatus } = React.useContext(ReportStatusContext);
+    const user = React.useContext(UserContext).user
 
     useEffect(() => {
         if(updateUserReport){
@@ -28,18 +31,61 @@ const MyReports = () => {
         }
     });
 
+    const handleEditReport=(x)=>{
+        setFileFormSubmitInfo(x);
+        setDeleteReportState(true);
+    }
+    
+    const[deleteReportState,setDeleteReportState] = useState(false)
+    const handleDeleteReport=(x)=>{
+        setFileFormSubmitInfo(x);
+        setDeleteReportState(true);
+    }
+    useEffect(() => {
+        if(deleteReportState){
+        fetch("/deleteUserReport/" + fileFormSubmitInfo._id, {
+            method: "DELETE",
+            headers: {
+            'content-Type': 'application/json',
+            }
+        })
+            .then((response) => response.json())
+            .then((parsed) => {
+                if(parsed.status === 200){
+                    console.log(parsed.data);
+                    setUserReports(parsed.data);
+                    setDeleteReportState(false);
+                } else {
+                    console.log(parsed.message)
+                    setUserReports(null)
+                    setDeleteReportState(false);
+                }
+            }, []);
+        }
+    });
+console.log(posterStatus);
     if(user) {
         if(userReports){
             return (
-                <div className="my_report_main_div">
-                    <p>this is the my reports page</p>
+                <div className="report_main_div_main">
                     {userReports.map(x=>{
                         return (
-                            <div key={x._id}>
-                                <p>{x.catName}</p>
-                                <p>{x.catColor}</p>
-                                <p>{x.escapeDay}</p>
-                                <p>{x.lastTimeSeen}</p>
+                            <div key={x._id} className="board_main_poster_div">
+                                <div style={{display:"flex",flexDirection:"row",justifyContent:"space-between"}}>
+                                    <p>{x.catName} file report</p>
+                                    <p>creation date</p>
+                                </div>
+                                <label  className="text" name="posterstatus"> Report Status </label>
+                                    <select className="posterStatus_input" name="posterstatus" id="posterstatus" defaultValue="" onChange={(e=>{setPosterStatus(e.target.value)})}required>
+                                        <option value="">Still looking</option>
+                                        <option value="Found">Cat is Found and Safe</option>
+                                        <option value="Dead">Cat is dead</option>
+                                        <option value="Expire">Expire poster after 30 day.</option>
+                                    </select>
+                                    <div style={{display:"flex", justifyContent:"space-between"}}>
+                                        <button onClick={(e=>{handleDeleteReport(x)})}>Delete Report</button>
+                                        <NavLink to="/fileAReport"> <button type="button" onClick={handleEditReport}>Edit Report</button></NavLink>
+                                    </div>
                             </div>
                         )
                     })}
@@ -48,9 +94,9 @@ const MyReports = () => {
         } else {
             return (
                 <div className="no_my_reports_found">
-                    <p className="text">this is the my reports page</p>
                     <p className="text">There is no Report associate with you Email Address</p>
-                    <p className="text">Wrong account ? Try login into your account ?</p>
+                    <p className="text">{user.email}</p>
+                    <p className="text">Wrong account ? Try login into another account ?</p>
                     <NavLink to="/login"><button className="back_to_login_btn">Login</button></NavLink>
                 </div> 
                 )
@@ -58,7 +104,6 @@ const MyReports = () => {
     } else {
         return (
             <div>
-                <p>this is the my reports page</p>
                 <p>You need to be login to see your Reports</p>
                 <NavLink to="/login"><button>Login</button></NavLink>
             </div>

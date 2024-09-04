@@ -5,8 +5,11 @@
   "license": "MIT",
   "dependencies": {
     "@vis.gl/react-google-maps": "^1.1.0",
+    "aws-sdk": "^2.1687.0",
+    "body-parser": "^1.20.2",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
+    "google-cloud-storage": "^2.0.2",
     "mongodb": "^6.8.0",
     "morgan": "^1.10.0",
     "nodemon": "^3.1.4",

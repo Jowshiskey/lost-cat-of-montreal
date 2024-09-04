@@ -1,12 +1,14 @@
 const { v4: uuidv4 } = require("uuid");
 const { MongoClient, ObjectId } = require("mongodb");
+
 require("dotenv").config();
 const { MONGO_URI } = process.env;
 
 // Saving the Database/Collection names as constants so there's less risk of typos later
 const DB = "LostCat";
-const report = "report";
-const users = "users"
+const REPORT = "report";
+const USERS = "users"
+
 
 
 const getAllReport = async (req, res) => {
@@ -14,7 +16,7 @@ const getAllReport = async (req, res) => {
     try {
         await client.connect(); 
         const db = client.db(DB);
-        const allReports = await db.collection(report).find().toArray();
+        const allReports = await db.collection(REPORT).find().toArray();
 
         if (allReports.length === 0) {
             res.status(404).json({ status: 404, message: "Report not found." });
@@ -37,7 +39,7 @@ const getUserReport = async (req,res) => {
     try {
         await client.connect(); 
         const db = client.db(DB);
-        const userReports = await db.collection(report).find(query).toArray();
+        const userReports = await db.collection(REPORT).find(query).toArray();
 
         if (userReports.length === 0) {
             res.status(404).json({ status: 404, message: "Report not found." });
@@ -63,6 +65,8 @@ const addFileReport = async (req, res) => {
         whereLastSeen,
         catGender,
         catMicroship,
+        catAddInfo,
+        reward,
         escapeDay,
         profileName,
         profilePhoneNumber,
@@ -77,7 +81,7 @@ const addFileReport = async (req, res) => {
     try {
         await client.connect();
         const db = client.db(DB);
-        await db.collection(report).insertOne({ _id,
+        await db.collection(REPORT).insertOne({ _id,
             catName ,
             catColor,
             catImage,
@@ -85,6 +89,8 @@ const addFileReport = async (req, res) => {
             whereLastSeen,
             catGender,
             catMicroship,
+            catAddInfo,
+            reward,
             escapeDay,
             profileName,
             profilePhoneNumber,
@@ -108,12 +114,12 @@ const addOneUser = async (req, res) => {
     try {
         await client.connect();
         const db = client.db(DB);
-        const userFound = await db.collection(users).findOne({ email : email });
+        const userFound = await db.collection(USERS).findOne({ email : email });
         // If no user were found
         // console.log(userFound);
         if (!userFound) {
             console.log("valid email");
-            await db.collection(users).insertOne( { _id, name, phone, email, password } );
+            await db.collection(USERS).insertOne( { _id, name, phone, email, password } );
             res.status(201).json({ status: 201, message: "user has been add to the users list" });
         }
         else {
@@ -138,7 +144,7 @@ const loginUser = async (req, res) => {
     try {
         await client.connect();
         const db = client.db(DB);
-        const userFound = await db.collection(users).findOne({ email : email });
+        const userFound = await db.collection(USERS).findOne({ email : email });
         // If no user were found
         // console.log(userFound);
         if (userFound) {
@@ -162,6 +168,56 @@ const loginUser = async (req, res) => {
     }
 };
 
+const deleteOneUser = async (req, res) => {
+    const userEmail = req.params.email;
+    const userId = req.params.id;
+    const queryID = { _id : userId };
+    const queryEMAIL = { profileEmail : userEmail };
+    const client = new MongoClient(MONGO_URI);
+
+    try {
+        await client.connect();
+        const db = client.db(DB);
+        await db.collection(USERS).deleteOne(queryID);
+        await db.collection(REPORT).deleteMany(queryEMAIL);
+        
+        res.status(200).json({ message: 'User removed' });
+        // } else {
+        //     res.status(404).json({ message: 'User not Found' });
+        // }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    } finally {
+        await client.close();
+    }
+};
+
+const deleteUserReport = async (req, res) => {
+    
+    const ReportId = req.params.id;
+    const query = { _id : ReportId };
+    const client = new MongoClient(MONGO_URI);
+
+    try {
+        await client.connect();
+        const db = client.db(DB);
+        
+        // Update the user's cart by removing the item with a specified ID
+        const result = await db.collection(REPORT).deleteOne(query);
+        if (result.modifiedCount > 0) {
+            res.status(200).json({ message: 'Report removed' });
+        } else {
+            res.status(404).json({ message: 'No Report match this reportID' });
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    } finally {
+        await client.close();
+    }
+};
+
 // UPDATE THIS IF YOU ADD/REMOVE A HANDLER FUNCTION
 module.exports = {
     getAllReport,
@@ -169,4 +225,6 @@ module.exports = {
     addOneUser,
     loginUser,
     getUserReport,
+    deleteOneUser,
+    deleteUserReport
 };

@@ -4,13 +4,15 @@ import { useState } from 'react';
 import { FileAreportContext } from '../../Context/FileAreportContext';
 // import {AdvancedMarker} from './advanced-marker';
 // const { GOOGLE_MAPS_API_KEY } = process.env;
-const GOOGLE_MAPS_API_KEY = "AIzaSyCtBq7kAEidwP4rDeaweiBRJ4WB8wwfi3s"
+const GOOGLE_MAPS_API_KEY = 
 
 const mapStyle = {
-        width: '20vw',
+        width: '100%',
         height: '20vh',
         gestureHandling:'greedy',
-        disableDefaultUI:true
+        disableDefaultUI:true,
+        margin: "auto",
+        marginBottom: "1rem",
 }
 const MONTREALCENTER = { lat: 45.533290, lng: -73.621629 }
 const MONTREAL_BOUNDS = {north: 45.5,south: 45,west: -74,east: -73,};
@@ -40,7 +42,6 @@ const MyFirstMap = () => {
                 >
                 <AdvancedMarker position={markerPos} draggable={true} onDragEnd={handleDragEnd}/>
             </Map>
-            <p>hello</p>
         </APIProvider>
         )
 }

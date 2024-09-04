@@ -13,18 +13,10 @@ const handlePrint=()=>{
     window.print();
     return false;
 }
-
-
 const handleExitPreview=()=>{
     setPreviewMode(false);
-    navigate("/createPoster");
+    navigate("/fileAReport");
 }
-// onClick={handleDownload}
-// const handleDownload=()=>{
-//     setPreviewMode(false);
-//     navigate("/report");
-// }
-
     return (
         <div >
             <div className="render">
@@ -32,9 +24,11 @@ const handleExitPreview=()=>{
                 <img src={dataURL} alt="cat_picture" className="poster_img"></img>
             </div>
             </div>
-            <button onClick={handlePrint} >Print</button>
-            <button onClick={handleExitPreview}>Exit Preview</button>
-            <button ><a href={dataURL} download>Save Poster</a></button>
+            <div className="preview_poster_opt_div">
+                <button className="update_btn" onClick={handleExitPreview}>Exit Preview</button>
+                <button className="update_btn" onClick={handlePrint} >Print</button>
+                <button className="update_btn"><a href={dataURL} download>Download Poster</a></button>
+            </div>
         </div>
     )
 };

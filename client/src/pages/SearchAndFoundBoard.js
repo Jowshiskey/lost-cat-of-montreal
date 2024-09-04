@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { FileAreportContext } from '../Context/FileAreportContext.js';
+// import { UserContext } from "../Context/UserContext.js";
 
 const SearchAndFoundBoard = () => {
   const [updateAllReport, setUpdateAllReport] = useState(true);
   const [allReport, setAllReport] = useState([]);
   const { dataURL } = React.useContext(FileAreportContext);
+
 
   useEffect(() => {
     if (updateAllReport) {
@@ -25,28 +27,34 @@ const SearchAndFoundBoard = () => {
 
   if(allReport.length<1){
     return (
-    <div className="report_main_div main">
-      <p>this is the search and found board</p>
-      <p className="text"> there is no report to report. Get it ?</p>
+    <div className="report_main_div_main">
+      <p className="text"> there is no report to display. All Cat are Home safe ^^</p>
     </div> )
   } else {
     return (
-      <div className="report_main_div main">
-        <p>this is the search and found board</p>
+      <div className="report_main_div_main">
         {allReport.map((x) => {
           return (
             <div key={x._id} className="board_main_poster_div">
               <div>
-                <p>{x.profileName}</p>
-                <p>{x.catColor}</p>
-                <img className="snf_poster_img" src={dataURL}></img>
+                <p className="text" style={{margin:"0",textAlign:"start"}}>👥 {x.profileName}</p>
+                {/* <p className="post_status_found">FOUND</p> */}
+                {/* <p className="post_status_close">CLOSE</p> */}
+                {/* <p className="post_status_exp">..EXP..</p> */}
+                <p className="post_status"></p>
+                <img className="snf_poster_img"  src={x.catImage}></img>
+                
               </div>
               <div>
-                <button>report post</button>
-                <button>share to social</button>
+                <button type="button" title="Report Post as offensive" >🚩</button>
+                <button type="button" title="share to social">🔗</button>
+                {/* <button type="button">Edit Post</button> */}
               </div>
               <div>
-                <p>time elapse since creation in days</p>
+                <p className="text">{x.reward}</p>
+                <p className="text">☎️ {x.profilePhoneNumber} ☎️</p>
+                <p style={{textAlign:"center"}}>~ Additionnal Description ~</p>
+                  <p className="text">{x.catAddInfo}</p>
               </div>
             </div>
           );

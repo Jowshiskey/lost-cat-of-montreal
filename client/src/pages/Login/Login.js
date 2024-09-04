@@ -96,6 +96,7 @@ if(user===null){
     return (
         <div className="failed_cred_main_div">
             <p className="text">You are currently Sign-in</p>
+            <p className="text">{user.email}</p>
             <button className="logout_submit_btn" onClick={handleLogout}>Logout</button>
         </div>
     )

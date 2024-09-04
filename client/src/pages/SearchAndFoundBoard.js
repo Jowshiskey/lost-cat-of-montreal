@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { FileAreportContext } from '../Context/FileAreportContext.js';
+import { ReportStatusContext } from "../Context/ReportStatusContext.js";
 // import { UserContext } from "../Context/UserContext.js";
 
 const SearchAndFoundBoard = () => {
   const [updateAllReport, setUpdateAllReport] = useState(true);
   const [allReport, setAllReport] = useState([]);
   const { dataURL } = React.useContext(FileAreportContext);
-
+  const { posterStatus,setPosterStatus } = React.useContext(ReportStatusContext);
 
   useEffect(() => {
     if (updateAllReport) {
@@ -38,11 +39,14 @@ const SearchAndFoundBoard = () => {
             <div key={x._id} className="board_main_poster_div">
               <div>
                 <p className="text" style={{margin:"0",textAlign:"start"}}>👥 {x.profileName}</p>
-                {/* <p className="post_status_found">FOUND</p> */}
-                {/* <p className="post_status_close">CLOSE</p> */}
-                {/* <p className="post_status_exp">..EXP..</p> */}
+                {x.posterStatus==="Found" && <p className="post_status_found">FOUND</p>}
+                {x.posterStatus==="Dead" && <p className="post_status_close" style={{color:"red"}}>CLOSE</p>}
+                {x.posterStatus==="Expire" && <p className="post_status_exp" style={{color:"orange"}}>..EXP..</p>}
+                
+                
                 <p className="post_status"></p>
-                <img className="snf_poster_img"  src={x.catImage}></img>
+                {/* <img className="snf_poster_img"  src={x.catImage}></img> */}
+                {x.posterStatus!=="Still looking" ? <img className="snf_poster_img"  src={x.catImage} style={{filter:"grayscale(100%)"}}></img> : <img className="snf_poster_img"  src={x.catImage}></img> }
                 
               </div>
               <div>

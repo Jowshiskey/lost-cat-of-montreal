@@ -50,7 +50,7 @@ if(user!==null){
         <NavLink to="/report">
           <p> search and found</p>
         </NavLink>
-        <NavLink to="/login" onClick={setLoginStep("enterCred")}>
+        <NavLink to="/login" onClick={(e=>{setLoginStep("enterCred")})}>
           <p>log in</p>
         </NavLink>
       </div>

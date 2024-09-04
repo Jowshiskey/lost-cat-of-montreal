@@ -113,8 +113,7 @@ a:active {
 .form_login, .success_logout_div, .failed_cred_main_div,
 .email_reset_div, 
 .complete_cred_main_div, .email_reset_complete_div, 
-.user_profile_main_div, .fileAreport_opt, 
-.formUpdatePw, .no_my_reports_found, .delete_account_div{
+.user_profile_main_div, .fileAreport_opt, .no_my_reports_found, .delete_account_div{
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -123,13 +122,13 @@ a:active {
     width:fit-content;
     height: 30vh;
 }
+
 .login_div_cred{
     margin:auto;
     width:fit-content;
     height:30vh;
 }
 .login_input, 
-.profile_input, 
 .email_reset_input{
     scale:1.4;
     height: 1.75rem;
@@ -211,6 +210,13 @@ a:active {
     margin: auto;
     border-radius: 5px;
 }
+.profile_input{
+    scale:1;
+    height: 30px;
+    width: 30vw;
+    margin: auto;
+    border-radius: 5px;
+}
 
 /* search and found board */
 .report_main_div_main{
@@ -253,7 +259,7 @@ a:active {
     position:absolute;
     width:fit-content;
     height:fit-content;
-    padding-top:3rem;
+    padding-top:7rem;
     padding-left:1.5rem;
     margin:auto;
     font-size:4.5rem;

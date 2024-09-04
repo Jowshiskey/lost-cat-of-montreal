@@ -43,27 +43,26 @@ const Login = () => {
                 if(parsed.status === 200){
                     console.log(parsed);
                     setLoginState(false);
-                    setLoginInfo({});
+                    // setLoginInfo({});
                     setUser(parsed);
                     setLoginStep("completeCred");
                     navigate("/userProfile");
                 } else {
                     console.log(parsed.message);
                     setLoginState(false);
-                    setLoginInfo({});
                     setLoginStep("failCred");
                 }
             }, []);
         }
     })
     //log OUT function
-    const handleLogout =()=>{
+    const handleLogout =(e)=>{
+        e.preventDefault()
         setLoginStep("enterCred");
         setLoginInfo({});
         setUser(null)
-
     }
-
+console.log(loginStep)
 if(user===null){
     return (
         <div>

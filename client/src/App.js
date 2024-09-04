@@ -6,7 +6,7 @@ import SearchAndFoundBoard from "./pages/SearchAndFoundBoard";
 import FileAReport from "./pages/FileAReport/FileAReport.js";
 import Login from "./pages/Login/Login.js"
 import SignUp from "./pages/SignUp.js";
-import UserProfile from "./pages/UserProfile.js";
+import UserProfile from "./pages/UserProfile/UserProfile.js";
 import MyFirstMap from "./pages/FileAReport/MyFirstMap.js";
 import Poster from "./pages/FileAReport/Poster.js";
 import PreviewPoster from "./pages/FileAReport/PreviewPoster.js";

@@ -3,10 +3,6 @@ import React, { useState, useEffect } from "react";
 
 
 
-
-
-
-
 const FailedCred =( { setLoginStep })=>{
 
 //toggle reset password

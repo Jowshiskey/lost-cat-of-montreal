@@ -6,6 +6,7 @@ import { UserContext } from "../Context/UserContext.js";
 import { ReportStatusContext } from "../Context/ReportStatusContext.js";
 
 const MyReports = () => {
+
     const navigate = useNavigate()
     const [updateUserReport, setUpdateUserReport] = useState(true);
     const [userReports, setUserReports] = useState([]);
@@ -63,7 +64,33 @@ const MyReports = () => {
             }, []);
         }
     });
-console.log(posterStatus);
+    
+    
+    const[updateReportState, setUpdateReportState] = useState("idle")
+    const handleUpdatePosterStatus=(e,x)=>{
+        e.preventDefault();
+        setFileFormSubmitInfo(x);
+        setUpdateReportState("processing")
+    }
+    useEffect(() => {
+        if(updateReportState==="processing"){
+        fetch("/profilePosterStatusUpdate/" + fileFormSubmitInfo._id +"/"+ posterStatus, {
+            method: "PATCH",
+        })
+            .then((response) => response.json())
+            .then((parsed) => {
+                if(parsed.status === 200){
+                    console.log(parsed);
+                    setUpdateReportState("updated");
+                } else {
+                    console.log(parsed)
+                    setUpdateReportState("failed");
+                }
+            }, []);
+        }
+    })
+console.log(user.email, posterStatus )
+console.log(updateReportState)
     if(user) {
         if(userReports){
             return (
@@ -76,7 +103,7 @@ console.log(posterStatus);
                                     <p>creation date</p>
                                 </div>
                                 <label  className="text" name="posterstatus"> Report Status </label>
-                                    <select className="posterStatus_input" name="posterstatus" id="posterstatus" defaultValue="" onChange={(e=>{setPosterStatus(e.target.value)})}required>
+                                    <select className="posterStatus_input" name="posterstatus" id="posterstatus" defaultValue={posterStatus} onChange={(e=>{setPosterStatus(e.target.value),handleUpdatePosterStatus(e,x)})}required>
                                         <option value="">Still looking</option>
                                         <option value="Found">Cat is Found and Safe</option>
                                         <option value="Dead">Cat is dead</option>

@@ -5,7 +5,10 @@ const morgan = require("morgan"); //helps with responses in console
 const PORT = 8102;
 
 const { getAllReport,addFileReport,addOneUser,
-        loginUser,getUserReport, deleteOneUser, deleteUserReport } = require("./handlers");
+        loginUser,getUserReport, deleteOneUser, deleteUserReport, 
+        updateProfileEmail, updateProfileName, updateProfilePhoneNumber, updatePosterStatus,
+        // updatePassword 
+      } = require("./handlers");
 
 const app = express();
 
@@ -34,15 +37,17 @@ app.delete("/deleteUserReport/:id", deleteUserReport);
 app.delete("/deleteAccount/:id/:email", deleteOneUser);
 
 //route to password change
-// app.patch("/user/password-change", updatePassword);
+// app.patch("/profilePasswordUpdate", updatePassword);
 //route to profile Name change
-// app.patch("/user/password-change", updatePassword);
+app.patch("/profileNameUpdate/:old/:new", updateProfileName);
 //route to profile Email change
-// app.patch("/user/password-change", updatePassword);
+app.patch("/profileEmailUpdate/:old/:new", updateProfileEmail);
 //route to profile Phone Number change
-// app.patch("/user/password-change", updatePassword);
-//route to catch everything else
+app.patch("/profilePhoneUpdate/:old/:new", updateProfilePhoneNumber);
+//route to profile Phone Number change
+app.patch("/profilePosterStatusUpdate/:id/:status", updatePosterStatus);
 
+//route to catch everything else
 app.use("*", (req, res) => {
     console.log(req);
       res

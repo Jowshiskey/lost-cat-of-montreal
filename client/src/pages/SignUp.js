@@ -62,7 +62,6 @@ const SignUp = () => {
 
 return (
     <div className="sign_up_main_div">
-        <p className="sign_up_main_text">Create a new Account</p>
     {signUpStep === "register" &&
         <div className="sign_up_form_div">
             <main className="main_form_div">

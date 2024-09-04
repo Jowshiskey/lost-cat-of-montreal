@@ -36,6 +36,7 @@ const FileAReport = () => {
         const reportInfo = 
             {
                 _id : uuidv4(),
+                posterStatus : "Still looking",
                 catName : report.catname.value,
                 catColor : report.catcolor.value,
                 catImage : previewPhoto,
@@ -68,6 +69,7 @@ const FileAReport = () => {
         const reportInfo = 
             {
                 _id : uuidv4(),
+                posterStatus : "Still looking",
                 catName : report.catname.value,
                 catColor : report.catcolor.value,
                 catImage : dataURL,
@@ -179,7 +181,6 @@ if(user!==null){
             </div>
             <div className="right_side_div">
                 <div >
-            <p>this is the Poster Page</p>
         {previewPhoto ?
             <div>
                 <div className="capture" ref={ToCaptureRef}>
